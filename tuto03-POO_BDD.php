@@ -119,7 +119,6 @@ $manager = new PersonnagesManager($db);
     
 ## ajoute le personnage créé $perso  ## 
 //$manager->add($perso);
-//test a delete
 
 
 ### get pour récupérer les infos d'un perso sur la BDD
