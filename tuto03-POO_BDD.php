@@ -70,11 +70,14 @@ class PersonnagesManager
  
     while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
     {
-      $persos[] = new Personnage($donnees);
+	  $perso = new Personnage();
+	  $perso->hydrate($donnees); // IL FAUT RAJOUTER l'hydratation sinon il n'y a pas de donnéees !
+      $persos[] = $perso;
     }
  
     return $persos;
   }
+  
  
   public function update(Personnage $perso)
   {
@@ -100,9 +103,8 @@ class PersonnagesManager
 }
 
 
-## test ##
+##-- Application des methodes ! --##
 $perso = new Personnage();
-
 
 $perso -> hydrate(array(
   'nom' => 'SParta',
@@ -112,22 +114,46 @@ $perso -> hydrate(array(
   'experience' => 0
 ));
 
-//echo "ex 1 : THIS IS ".$perso->nom();
+//echo "ex ADD : THIS IS ".$perso->nom();
 
 $db = new PDO('mysql:host=localhost;dbname=tuto_sdz', 'root', '');
 $manager = new PersonnagesManager($db);
     
 ## ajoute le personnage créé $perso  ## 
 //$manager->add($perso);
+echo "<br>ex ADD :  AJOUT d'un perso hydtraté ! ";
+
+## Supprime le $perso
+$select = $manager->get(10);
+//$manager->delete($select);
+echo "<br>ex DELETE:  Suppression de:".$select->nom()." and his ID is : ".$select->id();
 
 
 ### get pour récupérer les infos d'un perso sur la BDD
 
 $select = $manager->get(5);
+$select ->setNiveau(1); // permet de bien faire la différence pour l'exemple 3 ;
+$manager->update($select);
 //var_dump($select);
-echo "<br>ex 2 :  Select ID 5, it's :".$select->nom();
-/*$select ->setNiveau(3);
-$manager->update($select);*/
+echo "<br>ex SELECT :  Select ID 5, it's :".$select->nom()." and his lvl is : ".$select->niveau();
 
-### Update le pesro
+
+### Update le perso
+echo "<br> BUT WITH an Update <br>" ;
+$select ->setNiveau(3);
+$manager->update($select);
+echo "<br>ex UPDATE :  Now, ".$select->nom()." lvl is : ".$select->niveau();
+
+## afficher la liste des poerso
+$manager->getList();
+echo "<br>ex LISTE des persos : <br>";
+$persos = $manager->getList();
+//var_dump($persos);
+
+if (empty($persos)) {echo 'Personne...';}
+else
+{
+  foreach ($persos as $unPerso)
+    echo 'Perso : <a href="#id', $unPerso->id(), '">', htmlspecialchars($unPerso->nom()), '</a><br />';
+}
 ?>
