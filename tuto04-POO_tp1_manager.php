@@ -37,7 +37,7 @@ class PersonnagesManager
   public function delete(Personnage $perso)
   {
     // Exécute une requête de type DELETE.
-   $this->_db->exec('DELETE FROM personnages WHERE id = '.$perso->id());
+   $this->_db->exec('DELETE FROM personnages WHERE id = '.$perso->getId());
 
   }
    
@@ -104,7 +104,7 @@ class PersonnagesManager
     // Assignation des valeurs à la requête.
     // Exécution de la requête.
     $q = $this->_db->prepare('UPDATE personnages SET degats = :degats WHERE id = :id');
-     
+    //echo $perso->getDegats();
     $q->bindValue(':degats', $perso->getDegats(), PDO::PARAM_INT);
     $q->bindValue(':id', $perso->getId(), PDO::PARAM_INT);
      

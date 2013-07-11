@@ -90,7 +90,7 @@ elseif (isset($_GET['frapper'])) // Si on a cliqué sur un personnage pour le fr
           $message = 'Le personnage a bien été frappé !';
           $manager->update($perso);
           $manager->update($persoAFrapper);
-          var_dump($perso);
+          //var_dump($perso); // pour débug
            
           break;
          
