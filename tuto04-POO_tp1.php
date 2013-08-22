@@ -1,6 +1,6 @@
 <?php
 
-// On enregistre notre autoload. (désactivé ici car j'ai aps respecté le nommage)
+// On enregistre notre autoload. (désactivé ici car j'ai pas respecté le nommage)
 /*function chargerClasse($classname)
 {
   require $classname.'.class.php';
