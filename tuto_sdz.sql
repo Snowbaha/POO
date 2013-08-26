@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le: Ven 21 Juin 2013 à 16:39
+-- Généré le: Lun 26 Août 2013 à 14:57
 -- Version du serveur: 5.6.11-log
 -- Version de PHP: 5.4.14
 
@@ -107,18 +107,51 @@ CREATE TABLE IF NOT EXISTS `personnages` (
   `niveau` int(4) NOT NULL,
   `experience` int(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `personnages`
 --
 
 INSERT INTO `personnages` (`id`, `nom`, `forcePerso`, `degats`, `niveau`, `experience`) VALUES
-(1, 'SParta', 5, 0, 1, 0),
-(3, 'SParta', 5, 0, 1, 0),
-(4, 'SParta', 5, 0, 1, 0),
-(5, 'SPartaCus', 5, 0, 1, 0),
-(6, 'SPartaCus', 5, 0, 1, 0);
+(1, 'SParta', 5, 10, 1, 0),
+(3, 'SParta', 5, 10, 1, 0),
+(4, 'SParta', 5, 15, 1, 0),
+(5, 'SPartaCus', 5, 35, 3, 0),
+(6, 'SPartaCus', 5, 10, 1, 0),
+(7, 'SParta', 5, 5, 1, 0),
+(8, 'SParta', 5, 5, 1, 0),
+(10, 'SParta', 5, 0, 1, 0),
+(11, 'Robert', 0, 5, 0, 0),
+(12, 'Schermann', 0, 0, 0, 0),
+(13, 'Sparta2013', 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `personnages_v2`
+--
+
+CREATE TABLE IF NOT EXISTS `personnages_v2` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `degats` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `timeEndormi` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` enum('magicien','guerrier') COLLATE latin1_general_ci NOT NULL,
+  `atout` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `personnages_v2`
+--
+
+INSERT INTO `personnages_v2` (`id`, `nom`, `degats`, `timeEndormi`, `type`, `atout`) VALUES
+(1, 'mage', 45, 1377608002, 'magicien', 0),
+(2, 'guerre', 15, 1377608005, 'magicien', 4),
+(3, 'SParta', 7, 1377607997, 'guerrier', 4),
+(4, 'Darko', 10, 0, 'magicien', 4),
+(5, 'kikoo', 0, 0, 'guerrier', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
