@@ -4,7 +4,7 @@ class Contact{
 	private $_sujet ;
 	private $_message ;
 	
-	const EMAIL_DEST = "julien@proxilog.com";
+	const EMAIL_DEST = "email@email.com";
 	
 	
 	## Constructeur -> appelé auto quand on instancie la class
